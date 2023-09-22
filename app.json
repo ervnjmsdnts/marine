@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "marine",
-    "slug": "marine",
+    "name": "Aqua Culture",
+    "slug": "aqua-culture",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.oduum.aquaculture"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "05c40425-695d-4932-a3aa-6f78cf7ec2ad"
+      }
     }
   }
 }
