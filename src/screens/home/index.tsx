@@ -4,11 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Species from './_components/species';
 import { StyledComponent } from 'nativewind';
-import { TabProp } from '../../navigation/home-tabs';
 import { useNavigation } from '@react-navigation/native';
+import { RootScreenComposite } from '../../../App';
 
 export default function HomeScreen() {
-  const navigation = useNavigation<TabProp>();
+  const navigation = useNavigation<RootScreenComposite>();
   return (
     <SafeAreaView className='flex-1 bg-slate-50 p-4 gap-4'>
       <Text className='font-bold text-2xl text-blue-500'>Aqua Culture</Text>
@@ -26,9 +26,16 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       <ScrollView horizontal>
-        <Species />
-        <Species />
-        <Species />
+        <Species
+          source={require('../../../assets/species/species-bangus.jpg')}
+          name='Milk Fish'
+          onPress={() => navigation.navigate('Species', { data: 'Milk Fish' })}
+        />
+        <Species
+          source={require('../../../assets/species/species-tilapia.jpg')}
+          name='Tilapia'
+          onPress={() => navigation.navigate('Species', { data: 'Tilapia' })}
+        />
       </ScrollView>
     </SafeAreaView>
   );
