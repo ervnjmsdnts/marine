@@ -27,7 +27,7 @@ export default function ProductionCost({
     const itemCost = Number(field.quantity) * Number(field.price);
     return acc + itemCost;
   }, 0);
-  const prodMisc = prodCosts / 10;
+  const prodMisc = Number((prodCosts / 10).toFixed(2));
   const prodTotal = prodCosts + prodMisc;
   return (
     <View className='mb-4'>
@@ -98,7 +98,7 @@ export default function ProductionCost({
                 productionCostFieldArray.fields.length - 1,
               )
             }
-            className='p-2 flex-1 bg-blue-500 rounded-lg'>
+            className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
             <Text className='text-white text-center'>Remove Item</Text>
           </TouchableOpacity>
         ) : null}
@@ -125,7 +125,7 @@ export default function ProductionCost({
           {prodMisc}
         </Text>
         <Text className='text-right font-semibold'>
-          Production Total: {'\u20B1'}
+          Total Production Cost: {'\u20B1'}
           {prodTotal}
         </Text>
       </View>

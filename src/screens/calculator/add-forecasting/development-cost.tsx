@@ -27,14 +27,14 @@ export default function DevelopmentCost({
     const itemCost = Number(field.quantity) * Number(field.price);
     return acc + itemCost;
   }, 0);
-  const devContingency = devCosts / 10;
+  const devContingency = Number((devCosts / 10).toFixed(2));
   const devTotal = devCosts + devContingency;
 
   const projectLife = form.watch('depreciationCost.projectLife');
   const cropsyear = form.watch('depreciationCost.cropsyear');
 
   const depCost = Number(projectLife) * Number(cropsyear);
-  const depTotal = depCost ? devTotal / depCost : 0;
+  const depTotal = depCost ? Number((devTotal / depCost).toFixed(2)) : 0;
 
   return (
     <View className='mb-4'>
@@ -104,7 +104,7 @@ export default function DevelopmentCost({
                 developmentCostFieldArray.fields.length - 1,
               )
             }
-            className='p-2 flex-1 bg-blue-500 rounded-lg'>
+            className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
             <Text className='text-white text-center'>Remove Item</Text>
           </TouchableOpacity>
         ) : null}
@@ -121,7 +121,7 @@ export default function DevelopmentCost({
           <Text className='text-white text-center'>Add Item</Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View className='mb-2'>
         <Text className='text-right font-semibold'>
           Development Costs: {'\u20B1'}
           {devCosts}
@@ -131,7 +131,7 @@ export default function DevelopmentCost({
           {devContingency}
         </Text>
         <Text className='text-right font-semibold'>
-          Development Total: {'\u20B1'}
+          Total Development Cost: {'\u20B1'}
           {devTotal}
         </Text>
       </View>
@@ -175,7 +175,7 @@ export default function DevelopmentCost({
         </View>
         <View>
           <Text className='text-right font-semibold'>
-            Depreciation Cost Total: {'\u20B1'}
+            Total Depreciation Cost: {'\u20B1'}
             {depTotal}
           </Text>
         </View>
