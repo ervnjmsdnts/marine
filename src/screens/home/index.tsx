@@ -29,12 +29,22 @@ export default function HomeScreen() {
         <Species
           source={require('../../../assets/species/species-bangus.jpg')}
           name='Milk Fish'
-          onPress={() => navigation.navigate('Species', { data: 'Milk Fish' })}
+          onPress={() => navigation.navigate('MilkFishSpecies')}
         />
         <Species
           source={require('../../../assets/species/species-tilapia.jpg')}
           name='Tilapia'
-          onPress={() => navigation.navigate('Species', { data: 'Tilapia' })}
+          onPress={() => navigation.navigate('TilapiaSpecies')}
+        />
+        <Species
+          source={require('../../../assets/species/species-shrimp.jpg')}
+          name='Shrimp'
+          onPress={() => navigation.navigate('ShrimpSpecies')}
+        />
+        <Species
+          source={require('../../../assets/species/species-algae.jpg')}
+          name='Algae'
+          onPress={() => navigation.navigate('ShrimpSpecies')}
         />
       </ScrollView>
     </SafeAreaView>

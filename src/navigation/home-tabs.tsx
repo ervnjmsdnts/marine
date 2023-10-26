@@ -1,20 +1,43 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { Foundation, Feather } from '@expo/vector-icons';
+import { Foundation, Feather, Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/home';
 import { StyledComponent } from 'nativewind';
 import SettingsScreen from '../screens/settings';
 import DiscoverScreen from '../screens/discover';
+import CalculatorScreen from '../screens/calculator';
+import { createStackNavigator } from '@react-navigation/stack';
+import AddForeCastingScreen from '../screens/calculator/add-forecasting';
 
 export type TabParamList = {
   Home: undefined;
   Discover: undefined;
   Settings: undefined;
+  Calculator: undefined;
 };
 
 export type TabProp = BottomTabNavigationProp<TabParamList>;
 
 const Tab = createBottomTabNavigator<TabParamList>();
+
+export type ROIStackParamList = {
+  Forecasting: undefined;
+  AddForecasting: undefined;
+};
+
+const ROIStackNav = createStackNavigator<ROIStackParamList>();
+
+function ROIStack() {
+  return (
+    <ROIStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <ROIStackNav.Screen name='Forecasting' component={CalculatorScreen} />
+      <ROIStackNav.Screen
+        name='AddForecasting'
+        component={AddForeCastingScreen}
+      />
+    </ROIStackNav.Navigator>
+  );
+}
 
 export default function HomeTabs() {
   return (
@@ -53,6 +76,21 @@ export default function HomeTabs() {
               <StyledComponent
                 component={Feather}
                 name='globe'
+                size={32}
+                className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name='Calculator'
+          component={ROIStack}
+          options={{
+            title: 'Calculator',
+            tabBarIcon: ({ focused }) => (
+              <StyledComponent
+                component={Ionicons}
+                name='calculator'
                 size={32}
                 className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
               />

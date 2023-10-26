@@ -7,12 +7,18 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import HomeTabs, { TabParamList } from './src/navigation/home-tabs';
-import SpeciesScreen from './src/screens/species';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import TilapiaSpecies from './src/screens/species/tilapia';
+import MilkFishSpecies from './src/screens/species/milk-fish';
+import ShrimpSpecies from './src/screens/species/shrimp';
+import SeaweedSpecies from './src/screens/species/seaweed';
 
 export type StackParamList = {
   HomeTabs: undefined;
-  Species: { data: string };
+  TilapiaSpecies: undefined;
+  MilkFishSpecies: undefined;
+  ShrimpSpecies: undefined;
+  SeaweedSpecies: undefined;
 };
 
 const Stack = createStackNavigator<StackParamList>();
@@ -27,7 +33,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='HomeTabs' component={HomeTabs} />
-        <Stack.Screen name='Species' component={SpeciesScreen} />
+        <Stack.Screen name='TilapiaSpecies' component={TilapiaSpecies} />
+        <Stack.Screen name='MilkFishSpecies' component={MilkFishSpecies} />
+        <Stack.Screen name='ShrimpSpecies' component={ShrimpSpecies} />
+        <Stack.Screen name='SeaweedSpecies' component={SeaweedSpecies} />
       </Stack.Navigator>
     </NavigationContainer>
   );

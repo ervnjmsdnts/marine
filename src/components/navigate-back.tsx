@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StyledComponent } from 'nativewind';
 
-export default function NavigateBack({ title }: { title: string }) {
+export default function NavigateBack({ title }: { title?: string }) {
   const navigation = useNavigation();
   return (
     <View className='flex flex-row items-center gap-4'>

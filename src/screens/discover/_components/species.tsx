@@ -9,7 +9,7 @@ export default function Species({
 }: {
   source: any;
   name: string;
-  onPress: () => void;
+  onPress?: () => void;
 }) {
   return (
     <TouchableOpacity onPress={onPress} className='mb-2'>
