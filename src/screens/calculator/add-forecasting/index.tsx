@@ -8,6 +8,10 @@ import ProductionCost from './production-cost';
 import DevelopmentCost from './development-cost';
 import CostReturnAnalysis from './cost-return-analysis';
 import Input from '../../../components/input';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackScreenProps } from '@react-navigation/stack';
+import { ROIStackParamList } from '../../../navigation/home-tabs';
+import NavigateBack from '../../../components/navigate-back';
 
 const schema = z.object({
   name: z.string(),
@@ -39,7 +43,11 @@ const schema = z.object({
 
 export type ForecastSchema = z.infer<typeof schema>;
 
-export default function AddForeCastingScreen() {
+export default function AddForecastingScreen({
+  route,
+  navigation,
+}: StackScreenProps<ROIStackParamList, 'AddForecasting'>) {
+  const forecasts = route.params;
   const form = useForm<ForecastSchema>({
     defaultValues: {
       developmentCost: [{ name: '', price: 0, quantity: 0 }],
@@ -77,21 +85,35 @@ export default function AddForeCastingScreen() {
   const depCost = Number(projectLife) * Number(cropsyear);
   const depTotal = depCost ? Number((devTotal / depCost).toFixed(2)) : 0;
 
+  const addNewForecast = async (data: ForecastSchema) => {
+    try {
+      const updatedData = [
+        ...forecasts,
+        { ...data, id: Date.now(), date: new Date().toString() },
+      ];
+
+      await AsyncStorage.setItem('userForecasts', JSON.stringify(updatedData));
+      navigation.navigate('Forecasting', updatedData);
+    } catch (error) {
+      console.error('Error adding: ', error);
+    }
+  };
+
   return (
     <SafeAreaView className='bg-slate-50 flex-1 h-full p-4'>
-      <Text className='text-lg font-bold mb-4'>Add ROI Forecasting</Text>
-      <Controller
-        control={form.control}
-        name='name'
-        render={({ field }) => (
-          <Input
-            label='Name'
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
+      <NavigateBack title='Add ROI Forecast' />
       <ScrollView>
+        <Controller
+          control={form.control}
+          name='name'
+          render={({ field }) => (
+            <Input
+              label='Forecast Name'
+              value={field.value}
+              onChangeText={field.onChange}
+            />
+          )}
+        />
         <DevelopmentCost form={form} />
         <ProductionCost form={form} />
         <CostReturnAnalysis
@@ -102,7 +124,9 @@ export default function AddForeCastingScreen() {
         />
       </ScrollView>
       <View>
-        <TouchableOpacity className='p-2 bg-blue-500 rounded-md'>
+        <TouchableOpacity
+          className='p-2 bg-blue-500 rounded-md'
+          onPress={form.handleSubmit(addNewForecast)}>
           <Text className='text-white text-center'>Save</Text>
         </TouchableOpacity>
       </View>

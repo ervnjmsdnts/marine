@@ -61,8 +61,14 @@ export default function ProductionCost({
                     label='Quantity'
                     placeholder='Quantity'
                     keyboardType='numeric'
-                    value={field.value.toString()}
-                    onChangeText={field.onChange}
+                    value={field.value ? field.value.toString() : ''}
+                    onChangeText={(v) => {
+                      form.setValue(
+                        `productionCost.${index}.quantity`,
+                        parseFloat(v),
+                      );
+                      field.onChange(parseFloat(v));
+                    }}
                   />
                 )}
               />
@@ -75,8 +81,14 @@ export default function ProductionCost({
                     label='Price'
                     placeholder='Price'
                     keyboardType='numeric'
-                    value={field.value.toString()}
-                    onChangeText={field.onChange}
+                    value={field.value ? field.value.toString() : ''}
+                    onChangeText={(v) => {
+                      form.setValue(
+                        `productionCost.${index}.price`,
+                        parseFloat(v),
+                      );
+                      field.onChange(parseFloat(v));
+                    }}
                   />
                 )}
               />

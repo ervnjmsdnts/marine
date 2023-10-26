@@ -7,7 +7,10 @@ import SettingsScreen from '../screens/settings';
 import DiscoverScreen from '../screens/discover';
 import CalculatorScreen from '../screens/calculator';
 import { createStackNavigator } from '@react-navigation/stack';
-import AddForeCastingScreen from '../screens/calculator/add-forecasting';
+import AddForecastingScreen, {
+  ForecastSchema,
+} from '../screens/calculator/add-forecasting';
+import SpecificForecast from '../screens/calculator/specific-forecast';
 
 export type TabParamList = {
   Home: undefined;
@@ -21,8 +24,9 @@ export type TabProp = BottomTabNavigationProp<TabParamList>;
 const Tab = createBottomTabNavigator<TabParamList>();
 
 export type ROIStackParamList = {
-  Forecasting: undefined;
-  AddForecasting: undefined;
+  Forecasting: (ForecastSchema & { id: number; date: string })[] | undefined;
+  AddForecasting: (ForecastSchema & { id: number; date: string })[];
+  SpecificForecast: ForecastSchema & { id: number; date: string };
 };
 
 const ROIStackNav = createStackNavigator<ROIStackParamList>();
@@ -33,7 +37,11 @@ function ROIStack() {
       <ROIStackNav.Screen name='Forecasting' component={CalculatorScreen} />
       <ROIStackNav.Screen
         name='AddForecasting'
-        component={AddForeCastingScreen}
+        component={AddForecastingScreen}
+      />
+      <ROIStackNav.Screen
+        name='SpecificForecast'
+        component={SpecificForecast}
       />
     </ROIStackNav.Navigator>
   );

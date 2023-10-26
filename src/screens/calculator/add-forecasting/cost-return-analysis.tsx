@@ -62,8 +62,14 @@ export default function CostReturnAnalysis({
                 label='Stock Density'
                 placeholder='Quantity'
                 keyboardType='numeric'
-                value={field.value.toString()}
-                onChangeText={field.onChange}
+                value={field.value ? field.value.toString() : ''}
+                onChangeText={(v) => {
+                  form.setValue(
+                    'productionAnalysis.stockDensity',
+                    parseFloat(v),
+                  );
+                  field.onChange(parseFloat(v));
+                }}
               />
             )}
           />
@@ -71,13 +77,23 @@ export default function CostReturnAnalysis({
           <Controller
             control={form.control}
             name='productionAnalysis.survivalRate'
+            rules={{
+              required: true,
+              validate: (val) => (isNaN(val) ? 'Must be a number' : true),
+            }}
             render={({ field }) => (
               <Input
                 label='Survival Rate %'
                 placeholder='Price'
                 keyboardType='numeric'
-                value={field.value.toString()}
-                onChangeText={field.onChange}
+                value={field.value ? field.value.toString() : ''}
+                onChangeText={(v) => {
+                  form.setValue(
+                    'productionAnalysis.survivalRate',
+                    parseFloat(v),
+                  );
+                  field.onChange(parseFloat(v));
+                }}
               />
             )}
           />
@@ -88,10 +104,16 @@ export default function CostReturnAnalysis({
             render={({ field }) => (
               <Input
                 label='Avg. Weight'
-                placeholder='Price'
+                placeholder='Weight'
                 keyboardType='numeric'
-                value={field.value.toString()}
-                onChangeText={field.onChange}
+                value={field.value ? field.value.toString() : ''}
+                onChangeText={(v) => {
+                  form.setValue(
+                    'productionAnalysis.averageBodyWeight',
+                    parseFloat(v),
+                  );
+                  field.onChange(parseFloat(v));
+                }}
               />
             )}
           />
@@ -120,9 +142,12 @@ export default function CostReturnAnalysis({
               return (
                 <Input
                   label='Selling Price'
-                  value={field.value.toString()}
                   keyboardType='numeric'
-                  onChangeText={field.onChange}
+                  value={field.value ? field.value.toString() : ''}
+                  onChangeText={(v) => {
+                    form.setValue('grossSales.sellingPrice', parseFloat(v));
+                    field.onChange(parseFloat(v));
+                  }}
                   className='flex-1'
                 />
               );

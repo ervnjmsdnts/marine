@@ -67,8 +67,14 @@ export default function DevelopmentCost({
                     label='Quantity'
                     placeholder='Quantity'
                     keyboardType='numeric'
-                    value={field.value.toString()}
-                    onChangeText={field.onChange}
+                    value={field.value ? field.value.toString() : ''}
+                    onChangeText={(v) => {
+                      form.setValue(
+                        `developmentCost.${index}.quantity`,
+                        parseFloat(v),
+                      );
+                      field.onChange(parseFloat(v));
+                    }}
                   />
                 )}
               />
@@ -81,8 +87,14 @@ export default function DevelopmentCost({
                     label='Price'
                     placeholder='Price'
                     keyboardType='numeric'
-                    value={field.value.toString()}
-                    onChangeText={field.onChange}
+                    value={field.value ? field.value.toString() : ''}
+                    onChangeText={(v) => {
+                      form.setValue(
+                        `developmentCost.${index}.price`,
+                        parseFloat(v),
+                      );
+                      field.onChange(parseFloat(v));
+                    }}
                   />
                 )}
               />
@@ -152,8 +164,14 @@ export default function DevelopmentCost({
                   label='Project Life'
                   placeholder='Project Life'
                   keyboardType='numeric'
-                  value={field.value.toString()}
-                  onChangeText={field.onChange}
+                  value={field.value ? field.value.toString() : ''}
+                  onChangeText={(v) => {
+                    form.setValue(
+                      'depreciationCost.projectLife',
+                      parseFloat(v),
+                    );
+                    field.onChange(parseFloat(v));
+                  }}
                 />
               )}
             />
@@ -166,8 +184,11 @@ export default function DevelopmentCost({
                   label='Crops/Year'
                   placeholder='Crops/Year'
                   keyboardType='numeric'
-                  value={field.value.toString()}
-                  onChangeText={field.onChange}
+                  value={field.value ? field.value.toString() : ''}
+                  onChangeText={(v) => {
+                    form.setValue('depreciationCost.cropsyear', parseFloat(v));
+                    field.onChange(parseFloat(v));
+                  }}
                 />
               )}
             />
