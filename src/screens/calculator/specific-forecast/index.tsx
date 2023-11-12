@@ -1,8 +1,8 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import { ROIStackParamList } from '../../../navigation/home-tabs';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavigateBack from '../../../components/navigate-back';
+import { ROIStackParamList } from '../../../navigation/roi-stack';
 
 export default function SpecificForecast({
   route,

@@ -7,7 +7,7 @@ import { StyledComponent } from 'nativewind';
 export default function NavigateBack({ title }: { title?: string }) {
   const navigation = useNavigation();
   return (
-    <View className='flex flex-row items-center gap-4'>
+    <View className='flex flex-row items-center gap-4 mb-4'>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <StyledComponent
           component={Ionicons}

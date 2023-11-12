@@ -10,8 +10,8 @@ import CostReturnAnalysis from './cost-return-analysis';
 import Input from '../../../components/input';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackScreenProps } from '@react-navigation/stack';
-import { ROIStackParamList } from '../../../navigation/home-tabs';
 import NavigateBack from '../../../components/navigate-back';
+import { ROIStackParamList } from '../../../navigation/roi-stack';
 
 const schema = z.object({
   name: z.string(),

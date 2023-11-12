@@ -7,11 +7,11 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import { ROIStackParamList } from '../../navigation/home-tabs';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ForecastSchema } from './add-forecasting';
 import { format } from 'date-fns';
+import { ROIStackParamList } from '../../navigation/roi-stack';
 
 export default function CalculatorScreen() {
   const navigation =

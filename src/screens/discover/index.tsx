@@ -1,35 +1,36 @@
-import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Species from './_components/species';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
-import { RootScreenComposite } from '../../../App';
+import NavigateBack from '../../components/navigate-back';
+import Species from './_components/species';
+import { StackScreenProps } from '@react-navigation/stack';
+import { DiscoverStackParamList } from '../../navigation/discover-stack';
 
-export default function DiscoverScreen() {
-  const navigation = useNavigation<RootScreenComposite>();
+export default function DiscoverScreen({
+  navigation,
+}: StackScreenProps<DiscoverStackParamList, 'DiscoverMain'>) {
   return (
     <SafeAreaView className='bg-slate-50 flex-1 p-4'>
-      <Text className='text-2xl font-bold mb-4'>Discover</Text>
+      <NavigateBack title='Discover Species' />
       <ScrollView>
         <Species
           source={require('../../../assets/species/species-bangus.jpg')}
           name='Milk Fish'
-          onPress={() => navigation.navigate('MilkFishSpecies')}
+          onPress={() => navigation.navigate('MilkFish')}
         />
         <Species
           source={require('../../../assets/species/species-tilapia.jpg')}
           name='Tilapia'
-          onPress={() => navigation.navigate('TilapiaSpecies')}
+          onPress={() => navigation.navigate('Tilapia')}
         />
         <Species
           source={require('../../../assets/species/species-shrimp.jpg')}
           name='Shrimp'
-          onPress={() => navigation.navigate('ShrimpSpecies')}
+          onPress={() => navigation.navigate('Shrimp')}
         />
         <Species
-          source={require('../../../assets/species/species-algae.jpg')}
-          name='Algae'
-          onPress={() => navigation.navigate('SeaweedSpecies')}
+          source={require('../../../assets/species/species-seaweed.jpg')}
+          name='Seaweed'
+          onPress={() => navigation.navigate('Seaweed')}
         />
       </ScrollView>
     </SafeAreaView>

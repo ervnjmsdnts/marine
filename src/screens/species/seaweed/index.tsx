@@ -10,9 +10,9 @@ export default function SeaWeedSpecies() {
       <View className='mt-4'>
         <Image
           className='w-full h-48 rounded-lg'
-          source={require('../../../../assets/species/species-algae.jpg')}
+          source={require('../../../../assets/species/species-seaweed.jpg')}
         />
-        <Text className='text-xl mt-2 text-blue-500 font-bold'>Algae</Text>
+        <Text className='text-xl mt-2 text-blue-500 font-bold'>Seaweed</Text>
         <ScrollView>
           <View className='mb-2'>
             <Text className='text-lg mt-2 font-bold'>
