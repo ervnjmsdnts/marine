@@ -3,11 +3,13 @@ import { Image, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LandingStackParamList } from '../../navigation/landing-stack';
+import { useColor } from '../../contexts/color-context';
 
 export default function LandingScreen({
   navigation,
 }: StackScreenProps<LandingStackParamList, 'Landing'>) {
   const navigateToApp = () => navigation.navigate('HomeTabs');
+  const { currentColor } = useColor();
   return (
     <SafeAreaView className='bg-slate-50 flex-1 p-4'>
       <View className='flex flex-col justify-center h-full items-center'>
@@ -20,7 +22,7 @@ export default function LandingScreen({
         </View>
         <TouchableOpacity
           onPress={navigateToApp}
-          className='py-2 px-8 bg-blue-500 rounded-full'>
+          className={`py-2 px-8 rounded-full ${currentColor.bg}`}>
           <Text className='text-white text-center text-lg'>Get Started</Text>
         </TouchableOpacity>
       </View>

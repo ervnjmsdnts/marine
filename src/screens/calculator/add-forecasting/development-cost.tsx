@@ -2,6 +2,7 @@ import { Controller, UseFormReturn, useFieldArray } from 'react-hook-form';
 import { ForecastSchema } from '.';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Input from '../../../components/input';
+import { useColor } from '../../../contexts/color-context';
 
 export default function DevelopmentCost({
   form,
@@ -35,6 +36,8 @@ export default function DevelopmentCost({
 
   const depCost = Number(projectLife) * Number(cropsyear);
   const depTotal = depCost ? Number((devTotal / depCost).toFixed(2)) : 0;
+
+  const { currentColor } = useColor();
 
   return (
     <View className='mb-4'>
@@ -116,7 +119,7 @@ export default function DevelopmentCost({
                 developmentCostFieldArray.fields.length - 1,
               )
             }
-            className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
+            className={`p-1 flex-1 ${currentColor.bg} rounded-lg`}>
             <Text className='text-white text-center'>Remove Item</Text>
           </TouchableOpacity>
         ) : null}
@@ -129,7 +132,7 @@ export default function DevelopmentCost({
               quantity: 0,
             })
           }
-          className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
+          className={`p-1 flex-1 ${currentColor.bg} rounded-lg`}>
           <Text className='text-white text-center'>Add Item</Text>
         </TouchableOpacity>
       </View>

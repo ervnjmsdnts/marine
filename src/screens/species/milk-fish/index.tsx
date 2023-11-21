@@ -1,8 +1,10 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavigateBack from '../../../components/navigate-back';
 import { Image, ScrollView, Text, View } from 'react-native';
+import { useColor } from '../../../contexts/color-context';
 
 export default function MilkFishSpecies() {
+  const { currentColor } = useColor();
   return (
     <SafeAreaView className='flex-1 w-full p-4 bg-slate-50'>
       <NavigateBack />
@@ -11,7 +13,7 @@ export default function MilkFishSpecies() {
           className='h-48 w-full rounded-lg'
           source={require('../../../../assets/species/species-bangus.jpg')}
         />
-        <Text className='text-xl mt-2 text-blue-500 font-bold'>
+        <Text className={`text-xl mt-2 ${currentColor.text} font-bold`}>
           Bangus (Chanos chanos)
         </Text>
         <ScrollView>

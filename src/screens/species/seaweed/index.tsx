@@ -1,8 +1,10 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavigateBack from '../../../components/navigate-back';
 import { Image, ScrollView, Text, View } from 'react-native';
+import { useColor } from '../../../contexts/color-context';
 
 export default function SeaWeedSpecies() {
+  const { currentColor } = useColor();
   return (
     <SafeAreaView className='flex-1 w-full bg-slate-50 p-4'>
       <NavigateBack />
@@ -12,7 +14,9 @@ export default function SeaWeedSpecies() {
           className='w-full h-48 rounded-lg'
           source={require('../../../../assets/species/species-seaweed.jpg')}
         />
-        <Text className='text-xl mt-2 text-blue-500 font-bold'>Seaweed</Text>
+        <Text className={`text-xl mt-2 ${currentColor.text} font-bold`}>
+          Seaweed
+        </Text>
         <ScrollView>
           <View className='mb-2'>
             <Text className='text-lg mt-2 font-bold'>

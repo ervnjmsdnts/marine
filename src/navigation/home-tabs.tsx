@@ -6,6 +6,7 @@ import SettingsScreen from '../screens/settings';
 import ROIStack from './roi-stack';
 import HomeStack from './home-stack';
 import DevelopersScreen from '../screens/developers';
+import { useColor } from '../contexts/color-context';
 
 export type TabParamList = {
   Home: undefined;
@@ -19,6 +20,7 @@ export type TabProp = BottomTabNavigationProp<TabParamList>;
 const Tab = createBottomTabNavigator<TabParamList>();
 
 export default function HomeTabs() {
+  const { currentColor } = useColor();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -40,7 +42,7 @@ export default function HomeTabs() {
               component={Foundation}
               name='home'
               size={32}
-              className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
+              className={`${focused ? currentColor.text : 'text-slate-200'}`}
             />
           ),
         }}
@@ -55,7 +57,7 @@ export default function HomeTabs() {
               component={Feather}
               name='users'
               size={32}
-              className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
+              className={`${focused ? currentColor.text : 'text-slate-200'}`}
             />
           ),
         }}
@@ -70,7 +72,7 @@ export default function HomeTabs() {
               component={Ionicons}
               name='calculator'
               size={32}
-              className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
+              className={`${focused ? currentColor.text : 'text-slate-200'}`}
             />
           ),
         }}
@@ -85,7 +87,7 @@ export default function HomeTabs() {
               component={Foundation}
               name='widget'
               size={32}
-              className={`${focused ? 'text-blue-500' : 'text-slate-200'}`}
+              className={`${focused ? currentColor.text : 'text-slate-200'}`}
             />
           ),
         }}

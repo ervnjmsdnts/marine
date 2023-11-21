@@ -2,6 +2,7 @@ import { Controller, UseFormReturn, useFieldArray } from 'react-hook-form';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Input from '../../../components/input';
 import { ForecastSchema } from '.';
+import { useColor } from '../../../contexts/color-context';
 
 export default function ProductionCost({
   form,
@@ -29,6 +30,8 @@ export default function ProductionCost({
   }, 0);
   const prodMisc = Number((prodCosts / 10).toFixed(2));
   const prodTotal = prodCosts + prodMisc;
+
+  const { currentColor } = useColor();
   return (
     <View className='mb-4'>
       <Text className='text-lg font-semibold'>II. Production Cost</Text>
@@ -110,7 +113,7 @@ export default function ProductionCost({
                 productionCostFieldArray.fields.length - 1,
               )
             }
-            className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
+            className={`p-1 flex-1 ${currentColor.bg} rounded-lg`}>
             <Text className='text-white text-center'>Remove Item</Text>
           </TouchableOpacity>
         ) : null}
@@ -123,7 +126,7 @@ export default function ProductionCost({
               quantity: 0,
             })
           }
-          className='p-1 flex-1 bg-blue-500/50 rounded-lg'>
+          className={`p-1 flex-1 ${currentColor.bg} rounded-lg`}>
           <Text className='text-white text-center'>Add Item</Text>
         </TouchableOpacity>
       </View>

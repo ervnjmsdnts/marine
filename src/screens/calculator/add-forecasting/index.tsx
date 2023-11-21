@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackScreenProps } from '@react-navigation/stack';
 import NavigateBack from '../../../components/navigate-back';
 import { ROIStackParamList } from '../../../navigation/roi-stack';
+import { useColor } from '../../../contexts/color-context';
 
 const schema = z.object({
   name: z.string(),
@@ -99,6 +100,8 @@ export default function AddForecastingScreen({
     }
   };
 
+  const { currentColor } = useColor();
+
   return (
     <SafeAreaView className='bg-slate-50 flex-1 h-full p-4'>
       <NavigateBack title='Add ROI Forecast' />
@@ -125,7 +128,7 @@ export default function AddForecastingScreen({
       </ScrollView>
       <View>
         <TouchableOpacity
-          className='p-2 bg-blue-500 rounded-md'
+          className={`p-2 rounded-md ${currentColor.bg}`}
           onPress={form.handleSubmit(addNewForecast)}>
           <Text className='text-white text-center'>Save</Text>
         </TouchableOpacity>
